@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 const buttonStyles = css`
   background-color: black;
@@ -56,5 +56,6 @@ export const CustomButtonContainer = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
+
   ${getButtonStyles}
 `;
