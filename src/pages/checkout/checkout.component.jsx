@@ -7,42 +7,40 @@ import StripeCheckoutButton from "../../components/stripe-button/stripe-button.c
 import { selectCartItems, selectCartTotal } from "../../redux/cart/cart.selectors";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
-import "./checkout.styles.scss";
+import {
+  CheckoutPageContainer,
+  CheckoutHeaderContaier,
+  HeaderBlockContainer,
+  TotalContainer,
+  WarningContainer,
+  StipeButtonContainer
+} from "./checkout.styles";
 
 const CheckoutPage = ({cartItems, total}) => (
-  <div className="checkout-page">
-    <div className="checkout-header">
-      <div className="header-block">
-        <span>Product</span>
-      </div>
-      <div className="header-block">
-        <span>Description</span>
-      </div>
-      <div className="header-block">
-        <span>Quantity</span>
-      </div>
-      <div className="header-block">
-        <span>Price</span>
-      </div>
-      <div className="header-block">
-        <span>Remove</span>
-      </div>
-    </div>
+  <CheckoutPageContainer>
+    <CheckoutHeaderContaier>
+      <HeaderBlockContainer><span>Product</span></HeaderBlockContainer>
+      <HeaderBlockContainer><span>Description</span></HeaderBlockContainer>
+      <HeaderBlockContainer><span>Quantity</span></HeaderBlockContainer>
+      <HeaderBlockContainer><span>Price</span></HeaderBlockContainer>
+      <HeaderBlockContainer><span>Remove</span></HeaderBlockContainer>
+    </CheckoutHeaderContaier>
     {
       cartItems.map(cartItem =>
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       )
     }
-    <div className="total">
+    <TotalContainer>
       <span>Total: ${total}</span>
-    </div>
-    <div className="test-warning">
+    </TotalContainer>
+    <WarningContainer>
       *Please user the following bank card number for test payment*<br />
       4242 4242 4242 4242, exp: 01/21, CVV: 123
-
-    </div>
-    <StripeCheckoutButton price={total} />
-  </div>
+    </WarningContainer>
+    <StipeButtonContainer>
+      <StripeCheckoutButton price={total} />
+    </StipeButtonContainer>
+  </CheckoutPageContainer>
 );
 
 const mapStateToProps = createStructuredSelector({
